@@ -300,6 +300,41 @@ function initFAQ() {
     });
 }
 
+
+//  alwakil scrolling image js
+const sliders = document.querySelectorAll(".alwakil-image-row");
+
+sliders.forEach((slider) => {
+    let isPaused = false;
+    let speed = 0.5;
+
+    function autoScroll() {
+        if (!isPaused) {
+            slider.scrollLeft += speed;
+
+            if (slider.scrollLeft >= slider.scrollWidth - slider.clientWidth) {
+                slider.scrollLeft = 0;
+            }
+        }
+        requestAnimationFrame(autoScroll);
+    }
+
+    autoScroll();
+
+    const cards = slider.querySelectorAll(".alwakil-card");
+
+    cards.forEach((card) => {
+        card.addEventListener("mouseenter", () => {
+            isPaused = true;
+        });
+
+        card.addEventListener("mouseleave", () => {
+            isPaused = false;
+        });
+    });
+});
+
+
 // Initialize FAQ when DOM is loaded
 document.addEventListener('DOMContentLoaded', initFAQ);
 
