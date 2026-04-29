@@ -656,3 +656,101 @@ function initRoomCategoriesGrid() {
 
 // Initialize room categories grid
 document.addEventListener('DOMContentLoaded', initRoomCategoriesGrid);
+
+// Blog page interactions
+function initBlogPage() {
+    const showcase = document.querySelector('.blog-showcase');
+    const showcaseCards = document.querySelectorAll('.blog-showcase-card');
+    const showcaseTitle = document.querySelector('.blog-showcase-title');
+
+    if (showcase && showcaseCards.length && showcaseTitle) {
+        let lastCenteredCard = null;
+
+        function updateCenteredShowcaseCard() {
+            const showcaseRect = showcase.getBoundingClientRect();
+            const showcaseCenter = showcaseRect.left + showcaseRect.width / 2;
+            let closestCard = null;
+            let closestDistance = Number.POSITIVE_INFINITY;
+
+            showcaseCards.forEach(card => {
+                const rect = card.getBoundingClientRect();
+                const cardCenter = rect.left + rect.width / 2;
+                const distance = Math.abs(showcaseCenter - cardCenter);
+
+                if (distance < closestDistance) {
+                    closestDistance = distance;
+                    closestCard = card;
+                }
+            });
+
+            if (closestCard && closestCard !== lastCenteredCard) {
+                showcaseCards.forEach(card => card.classList.remove('is-center'));
+                closestCard.classList.add('is-center');
+                showcaseTitle.textContent = closestCard.dataset.blogTitle || '';
+                lastCenteredCard = closestCard;
+            }
+
+            requestAnimationFrame(updateCenteredShowcaseCard);
+        }
+
+        updateCenteredShowcaseCard();
+
+        showcaseCards.forEach(card => {
+            card.addEventListener('click', event => {
+                event.preventDefault();
+                const target = document.querySelector(card.getAttribute('href'));
+
+                if (target) {
+                    expandBlogCard(target);
+                    target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }
+            });
+        });
+    }
+
+    const blogCards = document.querySelectorAll('.blog-card');
+
+    function expandBlogCard(cardToExpand) {
+        blogCards.forEach(card => {
+            const button = card.querySelector('.blog-image-button');
+            const isTarget = card === cardToExpand;
+
+            card.classList.toggle('is-expanded', isTarget);
+            if (button) {
+                button.setAttribute('aria-expanded', String(isTarget));
+            }
+        });
+    }
+
+    blogCards.forEach(card => {
+        const imageButton = card.querySelector('.blog-image-button');
+        const viewLessButton = card.querySelector('.view-less-btn');
+
+        if (imageButton) {
+            imageButton.addEventListener('click', () => {
+                const shouldExpand = !card.classList.contains('is-expanded');
+
+                if (shouldExpand) {
+                    expandBlogCard(card);
+                    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    card.classList.remove('is-expanded');
+                    imageButton.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+
+        if (viewLessButton) {
+            viewLessButton.addEventListener('click', event => {
+                event.stopPropagation();
+                card.classList.remove('is-expanded');
+                if (imageButton) {
+                    imageButton.setAttribute('aria-expanded', 'false');
+                }
+                document.querySelector('.blog-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', initBlogPage);
