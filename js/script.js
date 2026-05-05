@@ -1,5 +1,9 @@
 // Al Wakil Interior Design - Local JavaScript
 
+if (window.location.protocol === 'http:' && window.location.hostname === 'alwakil.ae') {
+    window.location.replace(`https://${window.location.host}${window.location.pathname}${window.location.search}${window.location.hash}`);
+}
+
 // Smooth scrolling for navigation links
 document.addEventListener('DOMContentLoaded', function() {
     // Smooth scroll for anchor links
