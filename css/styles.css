@@ -4493,10 +4493,14 @@ img.loaded {
 .blog-card.is-expanded {
     grid-column: 1 / -1;
     display: grid;
-    grid-template-columns: minmax(300px, 0.9fr) minmax(0, 1.1fr);
+    grid-template-columns: minmax(300px, 0.72fr) minmax(0, 1.28fr);
     min-height: 430px;
     border-color: rgba(255, 215, 0, 0.62);
     box-shadow: 0 24px 70px rgba(255, 170, 0, 0.16);
+}
+
+.blog-card.is-expanded:hover {
+    transform: none;
 }
 
 .blog-image-button {
@@ -4530,6 +4534,12 @@ img.loaded {
 
 .blog-card-body {
     padding: 1.35rem;
+    cursor: pointer;
+}
+
+.blog-card.is-expanded .blog-card-body {
+    padding: clamp(1.35rem, 3vw, 2.6rem);
+    cursor: default;
 }
 
 .blog-category {
@@ -4541,11 +4551,25 @@ img.loaded {
     text-transform: uppercase;
 }
 
+.blog-card h1,
 .blog-card h3 {
     color: white;
     font-size: clamp(1.18rem, 2vw, 1.55rem);
     line-height: 1.25;
     margin-bottom: 0;
+}
+
+.blog-card.is-expanded h1 {
+    font-size: clamp(1.75rem, 3vw, 2.75rem);
+    line-height: 1.12;
+    margin-bottom: 0.4rem;
+}
+
+.blog-full-content h2 {
+    color: #FFD700;
+    font-size: clamp(1.12rem, 2vw, 1.45rem);
+    line-height: 1.28;
+    margin: 1.45rem 0 0.55rem;
 }
 
 .blog-full-content {
@@ -4557,7 +4581,7 @@ img.loaded {
 }
 
 .blog-card.is-expanded .blog-full-content {
-    max-height: 560px;
+    max-height: 2600px;
     opacity: 1;
     margin-top: 1.25rem;
 }
@@ -4565,6 +4589,7 @@ img.loaded {
 .blog-full-content p {
     color: #cfcfcf;
     line-height: 1.75;
+    margin-bottom: 0.85rem;
 }
 
 .view-less-btn {
@@ -4651,5 +4676,73 @@ img.loaded {
     .blog-card.is-expanded .blog-image-button {
         height: 230px;
         min-height: 230px;
+    }
+}
+
+/* Certificate Section */
+.ravena-certificate {
+    padding: 80px 0;
+    background: #0a0a0a;
+}
+
+.certificate-layout {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.certificate-image-wrap {
+    flex: 0 0 auto;
+}
+
+.certificate-img {
+    width: 320px;
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 8px 32px rgba(255, 215, 0, 0.15);
+    display: block;
+}
+
+.certificate-content {
+    flex: 1;
+}
+
+.certificate-content .section-label {
+    color: #ffd700;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+}
+
+.certificate-content h2 {
+    color: #fff;
+    font-size: clamp(1.5rem, 3vw, 2.2rem);
+    margin-bottom: 16px;
+}
+
+.certificate-desc {
+    color: #aaa;
+    font-size: 1rem;
+    line-height: 1.8;
+    max-width: 480px;
+    margin-bottom: 0;
+}
+
+@media (max-width: 768px) {
+    .certificate-layout {
+        flex-direction: column;
+        gap: 32px;
+        text-align: center;
+    }
+
+    .certificate-img {
+        width: 260px;
+        margin: 0 auto;
+    }
+
+    .certificate-desc {
+        max-width: 100%;
     }
 }

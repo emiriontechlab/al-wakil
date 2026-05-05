@@ -724,19 +724,31 @@ function initBlogPage() {
 
     blogCards.forEach(card => {
         const imageButton = card.querySelector('.blog-image-button');
+        const cardBody = card.querySelector('.blog-card-body');
         const viewLessButton = card.querySelector('.view-less-btn');
 
-        if (imageButton) {
-            imageButton.addEventListener('click', () => {
-                const shouldExpand = !card.classList.contains('is-expanded');
+        function toggleBlogCard() {
+            const shouldExpand = !card.classList.contains('is-expanded');
 
-                if (shouldExpand) {
-                    expandBlogCard(card);
-                    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                } else {
-                    card.classList.remove('is-expanded');
+            if (shouldExpand) {
+                expandBlogCard(card);
+                card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            } else {
+                card.classList.remove('is-expanded');
+                if (imageButton) {
                     imageButton.setAttribute('aria-expanded', 'false');
                 }
+            }
+        }
+
+        if (imageButton) {
+            imageButton.addEventListener('click', toggleBlogCard);
+        }
+
+        if (cardBody) {
+            cardBody.addEventListener('click', event => {
+                if (event.target.closest('.view-less-btn')) return;
+                toggleBlogCard();
             });
         }
 
