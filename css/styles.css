@@ -4565,6 +4565,22 @@ img.loaded {
     margin-bottom: 0.4rem;
 }
 
+.blog-card-body-rtl {
+    text-align: right;
+}
+
+.blog-card-body-rtl .blog-category {
+    letter-spacing: 0;
+}
+
+.blog-card-body-rtl h1 {
+    line-height: 1.45;
+}
+
+.blog-card.is-expanded .blog-card-body-rtl h1 {
+    line-height: 1.35;
+}
+
 .blog-full-content h2 {
     color: #FFD700;
     font-size: clamp(1.12rem, 2vw, 1.45rem);
@@ -4590,6 +4606,10 @@ img.loaded {
     color: #cfcfcf;
     line-height: 1.75;
     margin-bottom: 0.85rem;
+}
+
+.blog-card-body-rtl .blog-full-content p {
+    line-height: 2;
 }
 
 .view-less-btn {
