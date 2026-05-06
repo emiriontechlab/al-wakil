@@ -273,6 +273,7 @@ function initLazyLoading() {
     });
 }
 
+
 // Initialize lazy loading
 document.addEventListener('DOMContentLoaded', initLazyLoading);
 
