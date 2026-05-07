@@ -752,7 +752,7 @@ function initBlogPage() {
 
         if (cardBody) {
             cardBody.addEventListener('click', event => {
-                if (event.target.closest('.view-less-btn')) return;
+                if (event.target.closest('a, button')) return;
                 toggleBlogCard();
             });
         }
