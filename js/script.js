@@ -306,7 +306,7 @@ function initFAQ() {
 }
 
 
-//  alwakil scrolling image js
+//  Al Wakilscrolling image js
 const sliders = document.querySelectorAll(".alwakil-image-row");
 
 sliders.forEach((slider) => {
