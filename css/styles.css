@@ -5782,3 +5782,76 @@ img.loaded {
         height: 26px;
     }
 }
+
+/* Multilingual RTL support */
+html[dir="rtl"] body {
+    direction: rtl;
+    text-align: right;
+}
+
+html[dir="rtl"] .nav-container,
+html[dir="rtl"] .logo-link,
+html[dir="rtl"] .nav-links,
+html[dir="rtl"] .nav-actions,
+html[dir="rtl"] .hero-content,
+html[dir="rtl"] .about-content,
+html[dir="rtl"] .features-grid,
+html[dir="rtl"] .contact-content,
+html[dir="rtl"] .footer-content,
+html[dir="rtl"] .certificate-layout {
+    direction: rtl;
+}
+
+html[dir="rtl"] .nav-links a::after {
+    left: auto;
+    right: 0;
+}
+
+html[dir="rtl"] .hero-text,
+html[dir="rtl"] .about-text,
+html[dir="rtl"] .section-header,
+html[dir="rtl"] .service-card,
+html[dir="rtl"] .product-card,
+html[dir="rtl"] .feature-card,
+html[dir="rtl"] .blog-card-body,
+html[dir="rtl"] .contact-info,
+html[dir="rtl"] .contact-form,
+html[dir="rtl"] .footer {
+    text-align: right;
+}
+
+html[dir="rtl"] input,
+html[dir="rtl"] textarea,
+html[dir="rtl"] select {
+    direction: rtl;
+    text-align: right;
+}
+
+html[dir="rtl"] ul,
+html[dir="rtl"] ol {
+    padding-left: 0;
+    padding-right: 1.25rem;
+}
+
+html[dir="rtl"] .learn-more-btn svg,
+html[dir="rtl"] .hero-cta svg {
+    transform: scaleX(-1);
+}
+
+html[dir="rtl"] .whatsapp-float {
+    right: auto;
+    left: 25px;
+}
+
+@media (max-width: 768px) {
+    html[dir="rtl"] .nav-links {
+        text-align: right;
+    }
+}
+
+@media (max-width: 480px) {
+    html[dir="rtl"] .whatsapp-float {
+        right: auto;
+        left: 20px;
+    }
+}
