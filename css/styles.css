@@ -666,7 +666,7 @@ section {
 
 .seo-card-grid {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 1.5rem;
 }
 
@@ -674,8 +674,12 @@ section {
     background: rgba(255, 255, 255, 0.04);
     border: 1px solid rgba(255, 215, 0, 0.15);
     border-radius: 20px;
-    padding: 2rem;
+    padding: 0;
     transition: all 0.3s ease;
+    min-width: 0;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 .seo-card:hover {
@@ -695,6 +699,150 @@ section {
     color: #bbb;
     line-height: 1.7;
     margin: 0;
+}
+
+.seo-card-body {
+    padding: 1.4rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 0.6rem;
+}
+
+.seo-card-body h3 {
+    color: #FFD700;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.seo-card-body p {
+    color: #bbb;
+    line-height: 1.65;
+    font-size: 0.92rem;
+    margin: 0;
+    flex: 1;
+}
+
+.seo-card-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.8rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 50px;
+    background: linear-gradient(135deg, rgba(255, 215, 0, 0.12), rgba(255, 165, 0, 0.08));
+    border: 1px solid rgba(255, 215, 0, 0.4);
+    color: #FFD700;
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    align-self: flex-start;
+}
+
+.seo-card-btn svg {
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.seo-card-btn:hover {
+    background: linear-gradient(135deg, #FFD700, #FFA500);
+    color: #000;
+    border-color: transparent;
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.35);
+    transform: translateX(2px);
+}
+
+.seo-card-btn:hover svg {
+    transform: translateX(3px);
+}
+
+/* Scrolling image strip inside seo-card — 3D perspective effect */
+.seo-card-scroll-strip {
+    overflow: hidden;
+    border-radius: 12px;
+    margin-bottom: 0;
+    height: 145px;
+    position: relative;
+    perspective: 600px;
+    -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        #000 18%,
+        #000 82%,
+        transparent 100%
+    );
+    mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        #000 18%,
+        #000 82%,
+        transparent 100%
+    );
+}
+
+.seo-card-scroll-track {
+    display: flex;
+    gap: 10px;
+    height: 100%;
+    animation: seoCardScroll3D 12s linear infinite;
+    width: max-content;
+    transform-style: preserve-3d;
+}
+
+.seo-card:hover .seo-card-scroll-track {
+    animation-play-state: paused;
+}
+
+.seo-card-scroll-track img {
+    height: 145px;
+    width: 170px;
+    object-fit: cover;
+    border-radius: 10px;
+    flex-shrink: 0;
+    transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+    border: 1px solid rgba(255, 215, 0, 0.08);
+    transform: rotateY(8deg) scale(0.96);
+}
+
+.seo-card-scroll-track img:nth-child(even) {
+    transform: rotateY(-8deg) scale(0.96);
+}
+
+.seo-card:hover .seo-card-scroll-track img {
+    transform: rotateY(0deg) scale(1.04) !important;
+    box-shadow: 0 12px 30px rgba(255, 215, 0, 0.2);
+    border-color: rgba(255, 215, 0, 0.3);
+}
+
+@keyframes seoCardScroll3D {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.seo-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.seo-card-link h3 {
+    color: #FFD700;
+    font-size: 1.15rem;
+    margin-bottom: 0.8rem;
+}
+
+.seo-card-link p {
+    color: #bbb;
+    line-height: 1.7;
+    margin: 0;
+}
+
+.seo-card-link:hover h3 {
+    text-decoration: underline;
+    text-underline-offset: 3px;
 }
 
 .section-cta {
@@ -2548,7 +2696,7 @@ img.loaded {
     .seo-card-grid,
     .why-list,
     .ravena-feature-list {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .highlights-grid {
@@ -2558,6 +2706,30 @@ img.loaded {
 
     .highlight-card {
         padding: 2rem 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .seo-card-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.85rem;
+    }
+
+    .seo-card-body {
+        padding: 1rem;
+    }
+
+    .seo-card-body h3 {
+        font-size: 0.95rem;
+    }
+
+    .seo-card-body p {
+        font-size: 0.82rem;
+    }
+
+    .seo-card-btn {
+        font-size: 0.78rem;
+        padding: 0.45rem 0.85rem;
     }
 }
 
