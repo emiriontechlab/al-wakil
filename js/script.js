@@ -480,7 +480,8 @@ document.addEventListener('DOMContentLoaded', initEnhancedScrollAnimations);
 
 // Smooth reveal animations for sections
 function addSectionRevealAnimations() {
-    const sections = document.querySelectorAll('section');
+    // Exclude the first section (hero/scroll section) to avoid blank page on load
+    const sections = document.querySelectorAll('section:not(.alwakil-scroll-section):not(.product-category-showcase)');
     
     const sectionObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
